@@ -46,12 +46,8 @@ public class BlockParticles extends JavaPlugin {
         }
         Methods.kill();
         Methods.startParticles();
-        if (settings.getConfig().contains("Settings.Metrics")) {
-            if (settings.getConfig().getBoolean("Settings.Metrics")) {
-                new MCUpdate(this, true);
-            }
-        } else {
-            new MCUpdate(this, true);
+        if (settings.getConfig().getBoolean("Settings.Metrics", true)) {
+            // TODO: consider implementing bstats metrics in the future
         }
     }
 
