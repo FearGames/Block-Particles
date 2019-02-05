@@ -3,7 +3,6 @@ package me.badbones69.blockparticles;
 import org.bukkit.*;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Vector;
-import org.inventivetalent.particle.ParticleEffects;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,16 +28,6 @@ public class PlayParticles {
 
     private static float Vec() {
         return (float) -.05 + (float) (Math.random() * ((.05 - -.05)));
-    }
-
-    public void ranLoc(ParticleEffects part, Location loc, double offsetX, double offsetY, double offsetZ, int Amount, Color color) {
-        for (int i = 0; i < Amount; i++) {
-            try {
-                part.sendColor(Bukkit.getOnlinePlayers(), RanSpawn(loc.clone(), offsetX, offsetY, offsetZ), color);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     private static Location RanSpawn(Location loc, double X, double Y, double Z) {
