@@ -9,11 +9,12 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class PlayParticles {
-    public static HashMap<String, Integer> Blocks = new HashMap<>();
-    private static Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin("BlockParticles");
-    private static int range = 25;
+    // TODO: configurable
+    private static final int RANGE = 25;
 
-    @SuppressWarnings ("static-access")
+    public static HashMap<String, Integer> Blocks = new HashMap<>();
+    private static Plugin plugin;
+
     public PlayParticles(Plugin plugin) {
         this.plugin = plugin;
     }
@@ -46,7 +47,7 @@ public class PlayParticles {
 
             @Override
             public void run() {
-                if (Methods.noPlayers(l.clone(), range)) return;
+                if (Methods.noPlayers(l.clone(), RANGE)) return;
                 l.getWorld().spawnParticle(Particle.LAVA, l, 10, 0, 0, 0, 0);
             }
         }, 0, 4));
@@ -58,7 +59,7 @@ public class PlayParticles {
 
             @Override
             public void run() {
-                if (Methods.noPlayers(l.clone(), range)) return;
+                if (Methods.noPlayers(l.clone(), RANGE)) return;
                 for (Location loc : getCircle(l, 1, 15))
                     l.getWorld().spawnParticle(Particle.FLAME, loc, 1, 0, 0, 0, 0);
                 for (Location loc : getCircle(l, 2, 25))
@@ -73,7 +74,7 @@ public class PlayParticles {
 
             @Override
             public void run() {
-                if (Methods.noPlayers(l.clone(), range)) return;
+                if (Methods.noPlayers(l.clone(), RANGE)) return;
                 for (Location loc : getCircle(l, .6, 15))
                     l.getWorld().spawnParticle(Particle.FLAME, loc, 1, 0, 0, 0, 0);
                 for (Location loc : getCircle(l, 1, 20))
@@ -89,7 +90,7 @@ public class PlayParticles {
 
             @Override
             public void run() {
-                if (Methods.noPlayers(l.clone(), range)) return;
+                if (Methods.noPlayers(l.clone(), RANGE)) return;
                 if (time == 15) {
                     l.getWorld().spawnParticle(particle, l.clone().add(.8, 0, 0), amount, 0, 0, 0, 0);
                     l.getWorld().spawnParticle(particle, l.clone().add(-.8, 0, 0), amount, 0, 0, 0, 0);
@@ -167,7 +168,7 @@ public class PlayParticles {
 
             @Override
             public void run() {
-                if (Methods.noPlayers(l.clone(), range)) return;
+                if (Methods.noPlayers(l.clone(), RANGE)) return;
                 if (time == 15) l.getWorld().spawnParticle(particle, l.clone().add(.8, 0, 0), amount, 0, 0, 0, 0);
                 if (time == 14) l.getWorld().spawnParticle(particle, l.clone().add(.75, 0, .43), amount, 0, 0, 0, 0);
                 if (time == 13) l.getWorld().spawnParticle(particle, l.clone().add(.65, 0, .65), amount, 0, 0, 0, 0);
@@ -198,7 +199,7 @@ public class PlayParticles {
 
             @Override
             public void run() {
-                if (Methods.noPlayers(l.clone(), range)) return;
+                if (Methods.noPlayers(l.clone(), RANGE)) return;
                 l.getWorld().spawnParticle(Particle.CRIT, l.clone(), 1, 0, 0, 0, 0);
             }
         }, 0, 2));
@@ -210,7 +211,7 @@ public class PlayParticles {
 
             @Override
             public void run() {
-                if (Methods.noPlayers(l.clone(), range)) return;
+                if (Methods.noPlayers(l.clone(), RANGE)) return;
                 for (Location loc : getCircle(l, 2, 20))
                     l.getWorld().spawnParticle(Particle.CRIT, loc, 1, 0, 0, 0, 0);
             }
@@ -223,7 +224,7 @@ public class PlayParticles {
 
             @Override
             public void run() {
-                if (Methods.noPlayers(l.clone(), range)) return;
+                if (Methods.noPlayers(l.clone(), RANGE)) return;
                 l.getWorld().spawnParticle(Particle.CLOUD, l.clone(), 15, .3f, 0, 0.3f, 0);
                 l.getWorld().spawnParticle(Particle.WATER_DROP, l.clone().add(0, 0, .1), 10, 0.2f, 0, 0.2f, 0);
             }
@@ -236,7 +237,7 @@ public class PlayParticles {
 
             @Override
             public void run() {
-                if (Methods.noPlayers(l.clone(), range)) return;
+                if (Methods.noPlayers(l.clone(), RANGE)) return;
                 l.getWorld().spawnParticle(Particle.CLOUD, l, 20, .3f, 0, .3f, 0.05f);
             }
         }, 0, 2));
@@ -248,7 +249,7 @@ public class PlayParticles {
 
             @Override
             public void run() {
-                if (Methods.noPlayers(l.clone(), range)) return;
+                if (Methods.noPlayers(l.clone(), RANGE)) return;
                 l.getWorld().spawnParticle(Particle.ENCHANTMENT_TABLE, l, 20, 0, 0, 0, 2);
             }
         }, 0, 2));
@@ -260,7 +261,7 @@ public class PlayParticles {
 
             @Override
             public void run() {
-                if (Methods.noPlayers(l.clone(), range)) return;
+                if (Methods.noPlayers(l.clone(), RANGE)) return;
                 l.getWorld().spawnParticle(Particle.FLAME, l.clone().add(1, 0, 1), 1, 0, 0, 0, 0);
                 l.getWorld().spawnParticle(Particle.FLAME, l.clone().add(.9, .1, .9), 1, 0, 0, 0, 0);
                 l.getWorld().spawnParticle(Particle.FLAME, l.clone().add(.8, .2, .8), 1, 0, 0, 0, 0);
@@ -302,7 +303,7 @@ public class PlayParticles {
 
             @Override
             public void run() {
-                if (Methods.noPlayers(l.clone(), range)) return;
+                if (Methods.noPlayers(l.clone(), RANGE)) return;
                 l.getWorld().spawnParticle(Particle.SMOKE_LARGE, l, 15, 0.3f, 0, 0.3f);
                 l.getWorld().spawnParticle(Particle.FLAME, Drop(l.clone()), 15, 0, -0.2f, 0);
                 l.getWorld().spawnParticle(Particle.FLAME, Drop(l.clone()), 15, 0, -0.2f, 0);
@@ -318,7 +319,7 @@ public class PlayParticles {
 
             @Override
             public void run() {
-                if (Methods.noPlayers(l.clone(), range)) return;
+                if (Methods.noPlayers(l.clone(), RANGE)) return;
                 l.getWorld().spawnParticle(Particle.FIREWORKS_SPARK, l, 1, .7f, .7f, .7f, 0);
             }
         }, 0, 2));
@@ -330,7 +331,7 @@ public class PlayParticles {
 
             @Override
             public void run() {
-                if (Methods.noPlayers(l.clone(), range)) return;
+                if (Methods.noPlayers(l.clone(), RANGE)) return;
                 l.getWorld().spawnParticle(Particle.FIREWORKS_SPARK, l, 1, Vec(), .1f, Vec(), 1);
             }
         }, 0, 2));
@@ -342,7 +343,7 @@ public class PlayParticles {
 
             @Override
             public void run() {
-                if (Methods.noPlayers(l.clone(), range)) return;
+                if (Methods.noPlayers(l.clone(), RANGE)) return;
                 l.getWorld().spawnParticle(Particle.SPELL_MOB, l, 6, .3f, 0, .3f, Methods.randomColor());
                 l.getWorld().spawnParticle(Particle.SPELL_MOB, l, 6, .3f, 0, .3f, Methods.randomColor());
                 l.getWorld().spawnParticle(Particle.SPELL_MOB, l, 6, .3f, 0, .3f, Methods.randomColor());
@@ -358,7 +359,7 @@ public class PlayParticles {
 
             @Override
             public void run() {
-                if (Methods.noPlayers(l.clone(), range)) return;
+                if (Methods.noPlayers(l.clone(), RANGE)) return;
                 int i = time;
                 if (time == 15) {
                     l.getWorld().spawnParticle(Particle.NOTE, locs.get(i), 1, 0, 0, 0, Methods.randomColor());
@@ -407,7 +408,7 @@ public class PlayParticles {
 
             @Override
             public void run() {
-                if (Methods.noPlayers(l.clone(), range)) return;
+                if (Methods.noPlayers(l.clone(), RANGE)) return;
                 if (time == 15) l.getWorld().spawnParticle(Particle.CRIT_MAGIC, l.clone().add(0, .8, 0), 5, 0, 0, 0, 0);
                 if (time == 0)
                     l.getWorld().spawnParticle(Particle.CRIT_MAGIC, l.clone().add(0, .75, .43), 5, 0, 0, 0, 0);
@@ -479,7 +480,7 @@ public class PlayParticles {
 
             @Override
             public void run() {
-                if (Methods.noPlayers(l.clone(), range)) return;
+                if (Methods.noPlayers(l.clone(), RANGE)) return;
                 l.getWorld().spawnParticle(Particle.CLOUD, l, 15, .3f, 0, .3f, 0);
                 l.getWorld().spawnParticle(Particle.FIREWORKS_SPARK, l, 2, .3f, 0, .3f, 0);
             }
@@ -492,7 +493,7 @@ public class PlayParticles {
 
             @Override
             public void run() {
-                if (Methods.noPlayers(l.clone(), range)) return;
+                if (Methods.noPlayers(l.clone(), RANGE)) return;
                 l.getWorld().spawnParticle(Particle.FLAME, l, 1, Vec(), .1f, Vec(), 1.5f);
                 l.getWorld().spawnParticle(Particle.FLAME, l, 1, Vec(), .1f, Vec(), 1.5f);
                 l.getWorld().spawnParticle(Particle.FLAME, l, 1, Vec(), .1f, Vec(), 1.5f);
@@ -506,7 +507,7 @@ public class PlayParticles {
 
             @Override
             public void run() {
-                if (Methods.noPlayers(l.clone(), range)) return;
+                if (Methods.noPlayers(l.clone(), RANGE)) return;
                 l.getWorld().spawnParticle(Particle.TOWN_AURA, l, 3, 1, 0, 1, 0);
             }
         }, 0, 20));
@@ -518,7 +519,7 @@ public class PlayParticles {
 
             @Override
             public void run() {
-                if (Methods.noPlayers(l.clone(), range)) return;
+                if (Methods.noPlayers(l.clone(), RANGE)) return;
                 loc.getWorld().spawnParticle(Particle.VILLAGER_HAPPY, l, 10, .5f, .5f, .5f, 0);
             }
         }, 0, 5));
@@ -530,7 +531,7 @@ public class PlayParticles {
 
             @Override
             public void run() {
-                if (Methods.noPlayers(l.clone(), range)) return;
+                if (Methods.noPlayers(l.clone(), RANGE)) return;
                 l.getWorld().spawnParticle(Particle.VILLAGER_ANGRY, l, 5, .5f, .5f, .5f, 0);
             }
         }, 0, 10));
@@ -542,7 +543,7 @@ public class PlayParticles {
 
             @Override
             public void run() {
-                if (Methods.noPlayers(l.clone(), range)) return;
+                if (Methods.noPlayers(l.clone(), RANGE)) return;
                 l.getWorld().spawnParticle(Particle.FLAME, l, 15, .5f, .5f, .5f, 0);
             }
         }, 0, 8));
@@ -554,7 +555,7 @@ public class PlayParticles {
 
             @Override
             public void run() {
-                if (Methods.noPlayers(l.clone(), range)) return;
+                if (Methods.noPlayers(l.clone(), RANGE)) return;
                 loc.getWorld().spawnParticle(Particle.WATER_DROP, l.clone().add(0, .1, 0), 10, 0, 0, 0, 0);
                 loc.getWorld().spawnParticle(Particle.WATER_DROP, l.clone().add(0, .5, 0), 10, 0, 0, 0, 0);
                 loc.getWorld().spawnParticle(Particle.WATER_DROP, l.clone().add(.2, .3, .2), 10, 0, 0, 0, 0);
@@ -571,7 +572,7 @@ public class PlayParticles {
 
             @Override
             public void run() {
-                if (Methods.noPlayers(l.clone(), range)) return;
+                if (Methods.noPlayers(l.clone(), RANGE)) return;
                 loc.getWorld().playEffect(l, Effect.ENDER_SIGNAL, 1);
                 loc.getWorld().playEffect(l, Effect.ENDER_SIGNAL, 1);
                 loc.getWorld().playEffect(l, Effect.ENDER_SIGNAL, 1);
@@ -586,7 +587,7 @@ public class PlayParticles {
 
             @Override
             public void run() {
-                if (Methods.noPlayers(l.clone(), range)) return;
+                if (Methods.noPlayers(l.clone(), RANGE)) return;
                 Random rand = new Random();
                 int r = rand.nextInt(255);
                 int g = rand.nextInt(255);
@@ -603,7 +604,7 @@ public class PlayParticles {
 
             @Override
             public void run() {
-                if (Methods.noPlayers(l.clone(), range)) return;
+                if (Methods.noPlayers(l.clone(), RANGE)) return;
                 l.getWorld().spawnParticle(Particle.SNOW_SHOVEL, l, 40, 0, 0, 0, .2f);
             }
         }, 0, 2));
@@ -615,7 +616,7 @@ public class PlayParticles {
 
             @Override
             public void run() {
-                if (Methods.noPlayers(l.clone(), range)) return;
+                if (Methods.noPlayers(l.clone(), RANGE)) return;
                 try {
                     for (int i = 0; i < 3; i++) {
                         l.getWorld().spawnParticle(Particle.REDSTONE, l.clone().add(.5, 0, 0), 1, 0, 0, 0, 1, new Particle.DustOptions(Color.fromRGB(255, 255, 0), 1));
@@ -752,7 +753,7 @@ public class PlayParticles {
 
             @Override
             public void run() {
-                if (Methods.noPlayers(l.clone(), range)) return;
+                if (Methods.noPlayers(l.clone(), RANGE)) return;
                 startSoulWell(l, L);
             }
         }, 0, 16));
@@ -791,7 +792,7 @@ public class PlayParticles {
 
             @Override
             public void run() {
-                if (Methods.noPlayers(l.clone(), range)) return;
+                if (Methods.noPlayers(l.clone(), RANGE)) return;
                 startBigSoulWell(l, L);
             }
         }, 0, 25));
@@ -846,7 +847,7 @@ public class PlayParticles {
 
             @Override
             public void run() {
-                if (Methods.noPlayers(l.clone(), range)) return;
+                if (Methods.noPlayers(l.clone(), RANGE)) return;
                 startFlameWheel(l.clone(), L);
             }
         }, 0, 25));
@@ -855,7 +856,7 @@ public class PlayParticles {
 
             @Override
             public void run() {
-                if (Methods.noPlayers(l.clone(), range)) return;
+                if (Methods.noPlayers(l.clone(), RANGE)) return;
                 ArrayList<Location> locs = getCircle(l, 3.5, 75);
                 for (Location i : locs) {
                     //ParticleEffect.FLAME.display(0, 0, 0, 0, 1, i, 100);
@@ -903,7 +904,7 @@ public class PlayParticles {
 
             @Override
             public void run() {
-                if (Methods.noPlayers(l.clone(), range)) return;
+                if (Methods.noPlayers(l.clone(), RANGE)) return;
                 startWitchTornado(l, L);
             }
         }, 0, 30));
@@ -947,7 +948,7 @@ public class PlayParticles {
 
             @Override
             public void run() {
-                if (Methods.noPlayers(l.clone(), range)) return;
+                if (Methods.noPlayers(l.clone(), RANGE)) return;
                 startLoveTornado(l, L);
             }
         }, 0, 30));
@@ -986,7 +987,7 @@ public class PlayParticles {
 
             @Override
             public void run() {
-                if (Methods.noPlayers(l.clone(), range)) return;
+                if (Methods.noPlayers(l.clone(), RANGE)) return;
                 startBigLoveWell(l, L);
             }
         }, 0, 25));
@@ -1025,7 +1026,7 @@ public class PlayParticles {
 
             @Override
             public void run() {
-                if (Methods.noPlayers(l.clone(), range)) return;
+                if (Methods.noPlayers(l.clone(), RANGE)) return;
                 startLoveWell(l, L);
             }
         }, 0, 16));

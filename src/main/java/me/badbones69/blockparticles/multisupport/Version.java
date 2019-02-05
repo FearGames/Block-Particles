@@ -14,7 +14,7 @@ public enum Version {
     v1_13_R2(1131),
     TOO_NEW(-2);
 
-    private static Version latest;
+    private static Version version;
     private Integer versionInteger;
     public static Version currentVersion;
 
@@ -55,20 +55,21 @@ public enum Version {
     }
 
     /**
-     * Get the latest version allowed by the Version class.
-     * @return The latest version.
+     * Get the version version allowed by the Version class.
+     * @return The version version.
      */
     public static Version getLatestVersion() {
-        if(latest == null) {
-            Version v = Version.TOO_OLD;
-            for(Version version : values()) {
-                if(version.comparedTo(v) == 1) {
-                    v = version;
+        if(version == null) {
+            Version candidate = Version.TOO_OLD;
+            for(Version currentVersion : values()) {
+                if(currentVersion.comparedTo(candidate) == 1) {
+                    candidate = currentVersion;
                 }
             }
-            return v;
-        }else {
-            return latest;
+            version = candidate;
+            return candidate;
+        } else {
+            return version;
         }
     }
 
